@@ -22,6 +22,7 @@ const HomePage = () => {
 
   const navigator=useNavigate();
   const {isAuthenticated,setIsAuthenticated}=useContext(AuthContext);
+      const{login,logout} =useAuth();
   async function supabaseAuthentic(){
     
       try{const { data: { user } } = await supabase.auth.getUser();
@@ -37,7 +38,7 @@ const HomePage = () => {
   
   useEffect(()=>{
       
-      if(!supabaseAuthentic() && isAuthenticated===false){
+      if(!supabaseAuthentic() || isAuthenticated===false){
         navigator('/login')
       }
       
