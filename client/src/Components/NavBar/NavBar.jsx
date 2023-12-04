@@ -13,6 +13,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const NavBar = () => {
     
     const { logout } = useAuth();
+    const {setUserData}=useContext(AuthContext);
     const [open, setOpen] = React.useState(false);
     const navigator=useNavigate();
 
@@ -23,6 +24,7 @@ const NavBar = () => {
         setTimeout(()=>{
             handleClose();
             logout();
+            setUserData('');
             navigator('/login');
         },3000)
     }
