@@ -9,7 +9,7 @@ import SwitchesGroup from './SwitchesGroup';
 import { Loader, Placeholder } from 'rsuite';
 import { AuthContext, useAuth } from '../../Contexts/Authcontext';
 import { useNavigate } from 'react-router';
-
+import { supabase } from '../Authentication/app';
 // HomePage component
 const HomePage = () => {
   // State for managing search options and fetched data
@@ -21,13 +21,26 @@ const HomePage = () => {
   
 
   const navigator=useNavigate();
-  const {isAuthenticated}=useContext(AuthContext);
+  const {isAuthenticated,setIsAuthenticated}=useContext(AuthContext);
+  async function supabaseAuthentic(){
+    
+      try{const { data: { user } } = await supabase.auth.getUser();
+      console.log(user);
+        return (user && user.role==="authenticated");
+      }
+      catch(error){
+        console.log(error);
+        return false;
+      }
+    
+  }
+  
   useEffect(()=>{
-
-      if(isAuthenticated===false){
+      
+      if(!supabaseAuthentic() && isAuthenticated===false){
         navigator('/login')
       }
-
+      
   },[]);
 
 

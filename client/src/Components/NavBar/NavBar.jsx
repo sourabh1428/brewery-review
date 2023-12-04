@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './NavBar.css'
-import { useAuth } from '../../Contexts/Authcontext';
+import { AuthContext, useAuth } from '../../Contexts/Authcontext';
 import { useNavigate } from 'react-router';
 import img1 from '../Assets/Images/fries 1.svg'
 import Button from '@mui/material/Button';
@@ -16,6 +16,7 @@ const NavBar = () => {
     const [open, setOpen] = React.useState(false);
     const navigator=useNavigate();
 
+    const{userData}=useContext(AuthContext);
     function handleClick(){
         console.log("loggin out"+"🫠");
         handleOpen();
@@ -37,7 +38,7 @@ const NavBar = () => {
 
   return (
     <div className='nav-bar'>
-        <div className='nav-b-1'>  <img src={img1} height="50" width="50" alt="" /> <h1>Hello</h1> </div>
+        <div className='nav-b-1'>  <img src={img1} height="50" width="50" alt="" /> <h1>Hello</h1> <h5 className='useriddata'>{userData}</h5></div>
         {/* <Button onClick={handleClick} variant="contained" color="error" />logout</Button> */}
         <Button onClick={handleClick} variant="contained" color="error" >
         Logout

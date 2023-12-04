@@ -64,7 +64,7 @@ const OtpSign = () => {
       const { data, error } = await supabase.auth.signInWithOtp({
         email: gotdata,
         options: {
-          emailRedirectTo: "http://localhost:3000/",
+          emailRedirectTo: "https://bewery-reviews.onrender.com/",
         },
       });
       console.log(data);

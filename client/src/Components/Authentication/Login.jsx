@@ -56,7 +56,7 @@ const Login = () => {
     </React.Fragment>
   );
 
-  const { isAuthenticated, login, logout } = useAuth();
+  const { isAuthenticated, login,setUserData} = useAuth();
 
 
   function handleChange(event){
@@ -77,7 +77,7 @@ const Login = () => {
         setLoading(false);
           console.log("submitted 😃");
           setMessageSnack('Signed In successfully! ✅ ');
-         
+         setUserData(data.user.email);
           handleSnackClick();
           setTimeout(() => {
             navigator('/');
